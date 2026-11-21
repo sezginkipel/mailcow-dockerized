@@ -196,7 +196,8 @@ class ApiKeyService
     /** New random key in the format of the legacy UI: five groups of six hex digits */
     private static function generate(): string
     {
-        return implode('-', array_map(fn(): string => strtoupper(bin2hex(random_bytes(3))), range(1, 5)));
+        // Generate a key in the format used by SimpleLogin: five groups of six lowercase hex digits
+        return implode('-', array_map(fn(): string => strtolower(bin2hex(random_bytes(3))), range(1, 5)));
     }
 
     /** Checkbox or API flag; a hidden "0" + checkbox pair arrives as ["0", "1"] when checked */
